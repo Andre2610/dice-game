@@ -1,0 +1,22 @@
+import React from 'react';
+import Score from './Score';
+
+export default function ScoreTable(props) {
+  const { score } = props;
+  return (
+    <table>
+      <thead>
+        <tr>
+          <th>Player</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {score.map((eachPlayer) => {
+          const { id } = eachPlayer;
+          return <Score key={id} player={eachPlayer} />;
+        })}
+      </tbody>
+    </table>
+  );
+}
