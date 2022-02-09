@@ -4,7 +4,7 @@ import Score from './Score';
 export default function ScoreTable(props) {
   const { score } = props;
   return (
-    <table>
+    <table style={{ margin: '0 auto' }}>
       <thead>
         <tr>
           <th>Player</th>
