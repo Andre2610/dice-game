@@ -7,3 +7,19 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
+table,
+th,
+td {
+  border: 1px solid rgb(237, 237, 237);
+  border-collapse: collapse;
+  padding: 10px;
+}
+
+.actionBtn {
+  font-size: 1em;
+  width: 150px;
+  border-radius: 15px;
+  margin: 20px auto;
+  padding: 10px;
+}

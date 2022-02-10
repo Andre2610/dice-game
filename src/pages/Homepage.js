@@ -4,10 +4,12 @@ import ScoreTable from '../components/ScoreTable';
 const initialScore = [
   {
     id: 1,
+    name: 'John',
     score: 0,
   },
   {
     id: 2,
+    name: 'Jane',
     score: 0,
   },
 ];
@@ -44,7 +46,7 @@ export default function Homepage() {
 
     endTurn(`Player ${turnWinnerId} won the turn!`, newScore);
   };
-  const endTurn = (message, newScore) => {
+  const endTurn = (message, newScore = score) => {
     const winner = newScore.find((player) => player.score === targetSCore);
     const winnerMessage =
       winner &&
@@ -61,12 +63,27 @@ export default function Homepage() {
 
   console.log(`Player one roll: ${p1Roll} | Player two roll: ${p2Roll}`);
 
+  const newGame = () => {
+    setScore(initialScore);
+    setUserFeedback(null);
+  };
+
+  const onClickHandler = () => {
+    if (userFeedback && userFeedback.winnerMessage) return newGame();
+    return p1Roll && p2Roll ? compareScore() : diceRoll();
+  };
+
+  const buttonLabel = () => {
+    if (userFeedback && userFeedback.winnerMessage) return 'New game';
+    return p1Roll && p2Roll ? 'Compare scores' : 'Roll';
+  };
+
   return (
     <div style={{ margin: '0 auto', textAlign: 'center' }}>
       <ScoreTable score={score} />
 
-      <button onClick={() => (p1Roll && p2Roll ? compareScore() : diceRoll())}>
-        {p1Roll && p2Roll ? 'Compare scores' : 'Roll'}
+      <button className="actionBtn" onClick={onClickHandler}>
+        {buttonLabel()}
       </button>
       <p>
         <span>{p1Roll}</span> -{' '}
